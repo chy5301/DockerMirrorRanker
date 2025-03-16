@@ -3,10 +3,10 @@ import requests
 import concurrent.futures
 import time
 import threading
-from urllib3.exceptions import InsecureRequestWarning
+import urllib3
 
 # 禁用SSL证书警告
-requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 print_lock = threading.Lock()
 
@@ -25,10 +25,10 @@ def load_mirrors_from_md(file_path):
             for _ in range(2): next(f)
 
             return [
-                re.search(pattern, line).group(1)
+                match.group(1)
                 for line in f
-                if re.search(pattern, line)
-                   and re.search(pattern, line).group(2) in valid_status
+                if (match := re.search(pattern, line))
+                   and match.group(2) in valid_status
             ]
     except Exception as e:
         print(f"\033[31mError reading markdown file: {str(e)}\033[0m")
