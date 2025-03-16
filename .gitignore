@@ -1,2 +1,5 @@
+### Pycharm
 /.idea
-/.venv
+
+### VSCode
+.vscode/
