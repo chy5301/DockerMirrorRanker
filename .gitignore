@@ -1,5 +1,9 @@
-### Pycharm
+### Pycharm ###
 /.idea
 
-### VSCode
+### VSCode ###
 .vscode/
+
+### MirrorFiles ###
+mirrors.md
+valid_mirrors.md
